@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        td{ 
+            width: 200px;
+        }
+    </style>
+</head>
+<body>
+    hello info >w< 
+    <!-- {% for ele in userList%}
+    <ul>
+        <li>{{ele.dataValues.id}}번째 회원</li>
+        <li>아이디는 {{ele.dataValues.userid}}</li>
+        <li>비밀번호는 {{ele.dataValues.userpw}}</li>
+        <li>이름은 {{ele.dataValues.username}}</li>
+        <li>성별은
+         {%if ele.dataValues.gender %}
+            남자
+         {%else%}
+            여자 
+        {% endif %}
+        </li>
+        <li>이미지는 {{ele.dataValues.userimage}}</li>
+    </ul>
+    {% endfor %} -->
+
+
+
+    <table>
+        <thead>
+            <td>idx</td>
+            <td>아이디</td>
+            <td>비밀번호</td>
+            <td>이름</td>
+            <td>성별</td>
+            <td>이미지</td>
+            <td>아이디 생성일</td>
+        </thead>
+        {% for ele in userList%}
+        <tr>
+            <td>{{ele.dataValues.id}}</td>
+            <td>{{ele.dataValues.userid}}</td>
+            <td>{{ele.dataValues.userpw}}</td>
+            <td>{{ele.dataValues.username}}</td>
+            <td>
+             {%if ele.dataValues.gender %}
+                남자
+             {%else%}
+                여자 
+            {% endif %}
+            </td>
+            <td>{{ele.dataValues.userimage}}</td>
+            <td>{{ele.dataValues.create_at}}</td>
+        </tr>
+        {% endfor %}
+
+    </table>
+    
+</body>
+</html>

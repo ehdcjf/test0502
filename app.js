@@ -22,6 +22,7 @@ nunjucks.configure('views',{
 });
 
 app.use('/',indexRouter); 
+
 /*
 app.get('/', async(req,res)=>{
     //insert문 
