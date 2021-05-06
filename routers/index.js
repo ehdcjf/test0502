@@ -3,6 +3,7 @@ const router = express.Router();
 const mainRouter = require('./main/index')
 const userRouter = require('./user/index')
 
+//사용하는 url을 적어놓는 공간. 
 router.use('/',mainRouter);
 router.use('/user',userRouter);
 

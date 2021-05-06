@@ -21,8 +21,8 @@ nunjucks.configure('views',{
     express:app,
 });
 
-app.use('/')
-
+app.use('/',indexRouter); 
+/*
 app.get('/', async(req,res)=>{
     //insert문 
     // User.create({ 
@@ -33,7 +33,7 @@ app.get('/', async(req,res)=>{
     //     userimage:'no image', 
     // })
 
-    /*
+   
     let userList = User.findAll({})
     .then((result)=>{
         console.log(result);
@@ -42,7 +42,7 @@ app.get('/', async(req,res)=>{
         console.log(error); 
     })
     console.log(userList);
-    */
+    
     
     //select문의 사용. 
     //let userList = await User.findAll({}); //await가 실행되는 함수에 async
@@ -50,7 +50,7 @@ app.get('/', async(req,res)=>{
     
     // update문 
 
-    /*
+ 
     User.update({
         userpw:'12341234',
         username:'관리자2123',
@@ -61,19 +61,19 @@ app.get('/', async(req,res)=>{
             userid:'manager2222'
         }
     }); 
-    */
+ 
 
     //delete 
-    User.destroy({
-        where:{ 
-            id:1, 
-        }
-    })
+    // User.destroy({
+    //     where:{ 
+    //         id:1, 
+    //     }
+    // })
 
-    res.send('hello World');
+   // res.send('hello World');
     
     
-})
+//}) */
 
 
 app.listen(3001,()=>{
