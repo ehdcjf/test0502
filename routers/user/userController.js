@@ -5,16 +5,25 @@ let join = (req, res) => {
 }
 
 let join_success = async (req, res) => {
-    let body = req.body;
-    await User.create({
-        userid: body.userid,
-        userpw: body.userpw,
-        username: body.username,
-        gender: body.gender,
-    })
+    let userid = req.body.userid;
+    let userpw = req.body.userpw;
+    let username = req.body.username;
+    let gender = req.body.gender;
+    try {
+        let rst = await User.create({
+            userid,
+            userpw,
+            username,
+            gender,
+        })
+
+    } catch (e) {
+        console.log(e);
+    }
+
     res.render('./user/join_success.html', {
-        username: body.username,
-        userid: body.userid,
+        username: req.body.username,
+        userid: req.body.userid,
     });
 }
 
@@ -28,14 +37,34 @@ let login_check = async (req, res) => {
     let body = req.body;
     let userid = body.userid;
     let userpw = body.userpw;
-    res.redirect();
+
+    let result = await User.findOne({
+        where: {
+            userid: userid,
+            userpw: userpw,
+        }
+    })
+
+    req.session.userid = userid;
+    req.session.isLogin = true;
+    req.session.save(() => {
+        res.redirect('/');
+    })
+}
+
+let logout = (req, res) => {
+    delete req.session.isLogin;
+    delete req.session.userid;
+
+    req.session.save(() => {
+        res.redirect('/');
+    })
 }
 
 let info = async (req, res) => {
     let userList = await User.findAll({});
     userList.forEach((ele) => {
         ele.dataValues.create_at = changeDateFormat(ele.dataValues.create_at);
-        console.log(ele.dataValues.create_at);
     })
     res.render('./user/info.html', {
         userList: userList,
@@ -48,6 +77,7 @@ module.exports = {
     info: info,
     join_success: join_success,
     login_check: login_check,
+    logout
 }
 
 

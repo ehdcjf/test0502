@@ -8,7 +8,8 @@ const controller = require('./userController');
 router.get('/join', controller.join);
 router.post('/join_success', controller.join_success);
 router.get('/login', controller.login);
-router.get('/login_check', controller.login_check);
+router.post('/login_check', controller.login_check);
+router.get('/logout', controller.logout);
 router.get('/info', controller.info);
 
 
