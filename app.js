@@ -1,27 +1,37 @@
-const express = require('express'); 
-const app = express(); 
-const {sequelize} = require('./models/index'); 
-const nunjucks = require('nunjucks'); 
-const {User} =require('./models');
-const indexRouter = require('./routers/index')
+const express = require('express');
+const app = express();
+const { sequelize } = require('./models/index');
+const nunjucks = require('nunjucks');
+const bodyParser = require('body-parser');
+// const {User} =require('./models');
+const indexRouter = require('./routers/index');
+const session = require('express-session');
 
 
 
-sequelize.sync({force:false,})//sequelize 안에 sync라는 메서드   결과는 new Promise 
-.then(()=>{
-    console.log('데이터베이스 접속 완료')
-})
-.catch(()=>{
-    console.log('데이터베이스 접속이 실패하였습니다.'); 
-});
+
+
+sequelize.sync({ force: false, })//sequelize 안에 sync라는 메서드   결과는 new Promise 
+    .then(() => {
+        console.log('데이터베이스 접속 완료')
+    })
+    .catch(() => {
+        console.log('데이터베이스 접속이 실패하였습니다.');
+    });
 
 
 app.set('view engine', 'html');
-nunjucks.configure('views',{
-    express:app,
+nunjucks.configure('views', {
+    express: app,
 });
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(session({
+    secret: '1234',
+    resave: false,
+    saveUninitialized: true,
+}));
 
-app.use('/',indexRouter); 
+app.use('/', indexRouter);
 
 /*
 app.get('/', async(req,res)=>{
@@ -77,6 +87,6 @@ app.get('/', async(req,res)=>{
 //}) */
 
 
-app.listen(3001,()=>{
-    console.log("hello port 3001"); 
+app.listen(3001, () => {
+    console.log("hello port 3001");
 });
