@@ -63,12 +63,17 @@ let logout = (req, res) => {
 
 let info = async (req, res) => {
     let userList = await User.findAll({});
+    /*
     userList.forEach((ele) => {
         ele.dataValues.create_at = changeDateFormat(ele.dataValues.create_at);
     })
     res.render('./user/info.html', {
         userList: userList,
     });
+    */
+    res.json({
+        userList,
+    })
 }
 
 module.exports = {
@@ -77,7 +82,7 @@ module.exports = {
     info: info,
     join_success: join_success,
     login_check: login_check,
-    logout
+    logout:logout,
 }
 
 
@@ -121,6 +126,6 @@ function changeDateFormat(str) {
             break;
     }
     str
-    str = arr[2] + '-' + arr[0] + '-' + arr[1];
+    str = arr[2] + ' - ' + arr[0] + ' - ' + arr[1];
     return str;
 }

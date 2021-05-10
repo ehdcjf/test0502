@@ -6,6 +6,8 @@ const bodyParser = require('body-parser');
 // const {User} =require('./models');
 const indexRouter = require('./routers/index');
 const session = require('express-session');
+const cors = require('cors'); 
+
 
 
 
@@ -24,6 +26,8 @@ app.set('view engine', 'html');
 nunjucks.configure('views', {
     express: app,
 });
+app.use(cors()); 
+app.use(express.static('public')); 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(session({
     secret: '1234',
