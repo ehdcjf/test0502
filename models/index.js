@@ -1,5 +1,6 @@
 const Sequelize = require('sequelize');
 const User = require('./user');
+const Board = require('./board'); 
 
 const env = process.env.NODE_ENV || 'development';
 const config = require(__dirname + '/../config/config.json')[env];
@@ -21,4 +22,6 @@ db.Sequelize = Sequelize;
 db.User = User; 
 User.init(sequelize); //DB접속 정보를 넘겨주어 User를 init 한다. 
 
+db.Board = Board; 
+Board.init(sequelize);
 module.exports = db;
