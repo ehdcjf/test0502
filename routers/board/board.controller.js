@@ -15,7 +15,7 @@ let list = async(req,res)=>{
   tempList.forEach(ele => {
     ele.dataValues.number = total_record--;
   });
-
+  
     
 
   res.render('./board/list.html',{

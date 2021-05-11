@@ -1,4 +1,5 @@
 const Sequelize = require('sequelize');
+const moment = require('moment'); 
 
 module.exports = class User extends Sequelize.Model{ 
     static init(sequelize){ 
@@ -25,9 +26,13 @@ module.exports = class User extends Sequelize.Model{
                 allowNull: true,
             },
             create_at:{ 
-                type:Sequelize.DATE,
+                type:Sequelize.DATEONLY,
                 allowNull:false,
                 defaultValue:Sequelize.NOW,
+                get:function(){ 
+                    //npm install momnet 
+                    return moment(this.getDataValue('create_at')).format('YYYY-MM-DD');
+                }
             }
 
         },{

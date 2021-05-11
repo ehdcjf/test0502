@@ -4,12 +4,29 @@
         <table>
             <tr>
                 <td>아이디</td>
-                <td><input type="text" name="userid"></td>
+                <td><input type="text" name="userid" id="userid"></td>
             </tr>
             <tr>
                 <td>비밀번호</td>
-                <td><input type="password" name="userpw"></td>
+                <td><input type="password" name="userpw" id="userpw"></td>
             </tr>
         </table>
+ 
         <input type="submit" value="로그인하기">
     </form>
+{% if flag=='0' %}
+<script type="text/javascript">
+    //alert('아이디와 패스워드를 확인해주세요.'); 
+    const id = document.querySelector('#userid');
+    const pw = document.querySelector('#userpw');
+    id.setAttribute('style','background:yellow;');
+    pw.setAttribute('style','background:yellow;');
+
+    id.addEventListener('focus',()=>{
+        id.setAttribute('style','backgound:#fff;');
+    });
+    pw.addEventListener('focus',()=>{
+        pw.setAttribute('style','backgound:#fff;');
+    })
+</script>
+{% endif %}

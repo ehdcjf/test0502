@@ -1,29 +1,87 @@
 hello join >w< 
 <body>
-
-    <form action="/user/join_success" method="post">
+<!-- npm install multer -->
+    <form action="/user/join_success" id='join_form' method="post" enctype="multipart/form-data">
     <table>
         <tr>
-            <td>아이디</td>
-            <td><input type="text" name="userid"></td>
+            <td>아이디</td><!-- 중복체크 ajax -->
+            <td><input type="text" id='userid' name="userid">
+                <p id='userid_msg'></p>
+            </td>
         </tr>
         <tr>
-            <td>패스워드</td>
-            <td><input type="password" name="userpw"></td>
+            <td>패스워드</td><!-- 패스워드 확인,  일치할 떄 폼으로 전송 -->
+            <td><input type="password" name="userpw" id="userpw" ></td>
         </tr>
         <tr>
-            <td>이름</td>
-            <td><input type="text" name="username"></td>
+            <td>패스워드 확인</td>
+            <td><input type="password" name="userpw_check" id="userpw_check"></td>
+        </tr>
+        <tr>
+            <td>이름</td>  <!-- 글자길이 조절  -->
+            <td><input type="text" name="username" maxlength="20">
+            </td>
         </tr>
         <tr>
             <td>성별</td>
             <td>
-                <input type="radio" name="gender" id="gender" value="0">남자
+                <input type="radio" name="gender" id="gender" value="0" checked>남자
                 <input type="radio" name="gender" id="gender" value="1">여자
             </td>
         </tr>
+        <tr>
+            <td>이미지</td>
+            <td><input type="file" name="userimage" ></td>
+        </tr>
     </table>
 
-    <input type="submit" value="회원가입">
+    <input type="button" id ="join_submit"value="회원가입">
     
     </form>
+    
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script> <!-- ajax 셋팅 -->
+    <script type="text/javascript">
+        const pwd1 = document.querySelector('#userpw');
+        const pwd2 = document.querySelector('#userpw_check');
+        const btn = document.querySelector('#join_submit');
+        const join_form = document.querySelector('#join_form');
+        const userid_msg=document.querySelector('#userid_msg'); 
+        const userid= document.querySelector('#userid');
+        
+        function password_check(){ 
+            return pwd1.value == pwd2.value; 
+        }
+
+        async function userid_check(){ 
+            let data = await axios.get(`http://localhost:3001/user/userid_check?userid=${userid.value}`); // promise 객체로 반환. 
+            console.log(data); 
+            
+            //ajax 가져옴 중복은 false;
+            join_flag=data.data.join;  
+
+            if( join_flag){
+                userid_msg.innerHTML='올바른 아이디입니다.';
+                userid_msg.style.color ='green';
+            } else{
+                userid_msg.innerHTML='중복된 아이디입니다.';
+                userid_msg.style.color ='red';
+
+            }
+        }
+
+        userid.addEventListener('focusout',userid_check); 
+
+        btn.addEventListener('click',()=>{ 
+            let pwd_check = password_check(); 
+            if(pwd_check){
+                join_form.submit(); 
+            }else{ 
+                alert('패스워드가 서로 다릅니다.'); 
+                pwd1.value='';
+                pwd2.value='';
+                pwd1.focus(); 
+            }
+        }); 
+    
+    </script>
