@@ -16,12 +16,12 @@ module.exports = class Board extends Sequelize.Model{
         allowNull:true,
       },
       hit:{ 
-        type:Sequelize.STRING(10),
+        type:Sequelize.INTEGER.UNSIGNED,
         allowNull:false,
         defaultValue:0,
       },
       recommend:{
-        type:Sequelize.STRING(10),
+        type:Sequelize.INTEGER.UNSIGNED,
         allowNull:false,
         defaultValue:0,
       },
@@ -31,7 +31,7 @@ module.exports = class Board extends Sequelize.Model{
         defaultValue:Sequelize.NOW, 
       },
       number:{
-        type:Sequelize.STRING(10),
+        type:Sequelize.INTEGER.UNSIGNED,
       }
 
     },{

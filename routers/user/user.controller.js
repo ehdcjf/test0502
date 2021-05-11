@@ -54,8 +54,9 @@ let login_check = async (req, res) => {
     }else{//로그인 성공 
         req.session.userid = userid;
         req.session.isLogin = true;
+        
         req.session.save(() => {
-            res.redirect('/');
+            res.redirect('/',);
         })
     }
 

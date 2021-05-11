@@ -28,6 +28,7 @@ nunjucks.configure('views', {
 });
 app.use(cors()); 
 app.use(express.static('public')); 
+app.use('/uploads',express.static('uploads')); 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(session({
     secret: '1234',

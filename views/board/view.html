@@ -15,16 +15,16 @@
     <div class="container1200">
       <div class="textBox">
         <ul>
-          <li>글제목: {{list.subject}}</li>
-          <li>작성자: {{list.userid}}</li>
-          <li>조회수: {{list.hit}}</li>
-          <li>작성일: {{list.today}}</li>
-          <li>{{list.content}}</li>
+          <li>글제목: {{post.dataValues.subject}}</li>
+          <li>작성자: {{post.dataValues.userid}}</li>
+          <li>조회수: {{post.dataValues.hit}}</li>
+          <li>작성일: {{post.dataValues.create_at}}</li>
+          <li>{{post.dataValues.content}}</li>
         </ul>
         <div class="btnBox">
-          <a href="/board/list?page={{page}}" class="boardBtn">글목록</a>
-          <a href="/board/modify?idx={{list.idx}}" class="boardBtn">수정하기</a>
-          <a href="/board/delete?idx={{list.idx}}" class="boardBtn">삭제하기</a>
+          <a href="/board/list" class="boardBtn">글목록</a>
+          <a href="/board/modify?idx={{post.dataValues.id}}" class="boardBtn">수정하기</a>
+          <a href="/board/delete?idx={{post.dataValues.id}}" class="boardBtn">삭제하기</a>
         </div>
       </div>
 

@@ -1,9 +1,9 @@
 const express = require('express');
 const router = express.Router();
-const controller = require('./userController');
+const controller = require('./user.controller');
 const multer = require('multer'); 
 const path = require('path');
-const { route } = require('../main');
+
 
 //멀터 셋팅 
 const upload = multer({

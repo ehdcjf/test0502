@@ -1,6 +1,8 @@
 <link rel="stylesheet" href="../index.css">
 {% if isLogin %}
-  {{userid}}님 환영합니다. <a href="/user/logout">로그아웃</a>
+  {{userid}}
+  <img src="{{userinfo.userimage}}" alt="회원이미지">
+  <a href="/user/logout">로그아웃</a>
   <a href="/user/info">회원정보</a>
   {% else %}
   <a href="/user/login">로그인</a>

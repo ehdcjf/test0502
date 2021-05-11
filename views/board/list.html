@@ -21,7 +21,7 @@
           {% for item in list %}
           <tr id='tableList'>
               <td>{{item.dataValues.number}}</td>
-              <td><a href="/board/view?idx={{item.dataValues.idx}}">{{item.dataValues.subject}}</a></td>
+              <td><a href="/board/view?id={{item.dataValues.id}}">{{item.dataValues.subject}}</a></td>
               <td>{{item.dataValues.userid}}</td>
               <td>{{item.dataValues.create_at}}</td>
               <td>{{item.dataValues.hit}}</td>
